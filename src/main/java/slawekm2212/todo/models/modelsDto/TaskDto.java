@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -22,7 +24,7 @@ public class TaskDto {
 
     private LocalDateTime taskAddTime;
 
-    private LocalDateTime shouldBeDoneTill;
+    private Date shouldBeDoneTill;
 
     private Boolean status;
 }

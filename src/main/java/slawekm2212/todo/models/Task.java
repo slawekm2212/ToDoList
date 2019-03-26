@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,9 +26,9 @@ public class Task {
     @Column(name = "task_discription")
     private String taskDiscp;
     @Column(name = "task_add_time")
-    private LocalDateTime taskAddTime;
+    private LocalDateTime taskAddTime = LocalDateTime.now();
     @Column(name = "should_be_done_till")
-    private LocalDateTime shouldBeDoneTill;
+    private Date shouldBeDoneTill;
     @Column(name = "status")
     private Boolean status;
 
@@ -64,6 +65,7 @@ public class Task {
     }
 
     public LocalDateTime getTaskAddTime() {
+
         return taskAddTime;
     }
 
@@ -71,11 +73,11 @@ public class Task {
         this.taskAddTime = taskAddTime;
     }
 
-    public LocalDateTime getShouldBeDoneTill() {
+    public Date getShouldBeDoneTill() {
         return shouldBeDoneTill;
     }
 
-    public void setShouldBeDoneTill(LocalDateTime shouldBeDoneTill) {
+    public void setShouldBeDoneTill(Date shouldBeDoneTill) {
         this.shouldBeDoneTill = shouldBeDoneTill;
     }
 }

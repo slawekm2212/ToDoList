@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import slawekm2212.todo.models.Task;
 import slawekm2212.todo.models.modelsDto.TaskDto;
+import slawekm2212.todo.repositories.TaskRepository;
 import slawekm2212.todo.services.TaskService;
 
+import java.time.LocalDateTime;
 
 @Controller
 @CrossOrigin
@@ -14,26 +16,27 @@ public class HomeController {
 
 
     private TaskService taskService;
+    private TaskRepository taskRepository;
 
-    public HomeController(TaskService taskService) {
+    public HomeController(TaskService taskService, TaskRepository taskRepository) {
         this.taskService = taskService;
+        this.taskRepository = taskRepository;
     }
 
     @GetMapping("/")
     public String getHomePage(Model model) {
-        model.addAttribute("todo", taskService.getTasks()); // binduje, przekazuje planetService.get pod parametrem planets
+        model.addAttribute("task", taskService.getTasks()); //
         return "index";
     }
 
     @GetMapping("/add")
-    public String addToDoTask(@ModelAttribute Task task) {
-        System.out.println(task.getTaskAddTime());
-        taskService.addTask(TaskDto.builder().build());
+    public String addTask(@ModelAttribute TaskDto taskDto) {
+        taskService.addTask(taskDto);
         return "redirect:/";
     }
 
     @GetMapping("/delete")
-    public String deleteToDo(@RequestParam(value = "todo") String taskName) {
+    public String deleteTask(@RequestParam(value = "task") String taskName) {
         taskService.deleteTask(taskName);
         return "redirect:/";
     }
@@ -42,6 +45,12 @@ public class HomeController {
     public String updateTask(@ModelAttribute TaskDto taskDto) {
         taskService.updateTask(taskDto);
         return "redirect:/";
+    }
+    @GetMapping("/update")
+    public String updateHome(@RequestParam(value = "task") String taskName, Model model) {
+        Task task = taskRepository.findByTaskTitle(taskName).get();
+        model.addAttribute("task", task);
+        return "update";
     }
 
 }

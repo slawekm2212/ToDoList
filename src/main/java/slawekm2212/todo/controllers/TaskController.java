@@ -24,20 +24,13 @@ public class TaskController {
 
 
 
-    @GetMapping("/tasks")
-    public String homePage(Model model) {
-        model.addAttribute("tasks", taskService.getTasks());
-        return "tasks";
-    }
+
+
     @GetMapping("/task")
     public List<Task> getTasks() {
         return taskService.getTasks();
     }
-    @GetMapping("/index")
-    public String getHomePage(Model model) {
-        model.addAttribute("todo", taskService.getTasks()); // binduje, przekazuje planetService.get pod parametrem planets
-        return "index";
-    }
+
     @GetMapping("/dto/tasks")
     public List<TaskDto> getTasksDto() {
         return taskService.getTasksDto();

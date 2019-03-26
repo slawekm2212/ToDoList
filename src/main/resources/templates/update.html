@@ -24,15 +24,13 @@
     <div class="row">
         <div class="col-sm-12">
 
-            <form action="/upd" th:object="${toDoTask}">
-                <!--przechodzenie do stront-->
-                <!--<input type="number" name="id" value="">-->
+            <form action="/upd" th:object="${task}">
                 <p>Zadanie</p>
-                <input type="text" name="taskName" th:value="${todo.getTaskName()}"/><br>
+                <input type="text" name="taskTitle" th:value="${task.getTaskTitle()}"/><br>
                 <p>Informacje o zadaniu</p>
-                <input type="text" name="taskInfo" th:value="${todo.getTaskInfo()}"/><br>
+                <input type="text" name="taskDiscp" th:value="${task.getTaskDiscp()}"/><br>
                 <p>Data</p>
-                <input type="text" id="datepicker" width="276" name="date" th:vale="${todo.getDate()}"/><br>
+                <input type="text" id="datepicker" width="276" name="shouldBeDoneTill" th:value="${task.getShouldBeDoneTill()}"/><br>
                 <script>
                     $('#datepicker').datepicker({
                         uiLibrary: 'bootstrap4'

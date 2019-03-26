@@ -6,7 +6,6 @@ import slawekm2212.todo.models.Task;
 import slawekm2212.todo.models.modelsDto.TaskDto;
 import slawekm2212.todo.repositories.TaskRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,23 +32,6 @@ public class TaskService {
                 .map(taskMapper::map)
                 .collect(Collectors.toList());
     }
-   /*
-    public List<TaskDto> getTasksDto (){
-    public List<TaskDto> tasksDtos = new ArrayList<>();
-        taskRepository
-                .findAll()
-                .stream()
-                .map(p -> tasksDtos().add(taskMapper.map(p)))
-                .collect(Collectors.toList());
-        return tasksDtos();}
-        */
-    //sposób I
-//        List<PlanetDto> planetDtos = new ArrayList<>();
-//        planetRepository.findAll()
-//                .stream()
-//                .map(p -> planetDtos.add(planetMapper.map(p)))
-//                .collect(Collectors.toList());
-//             return planetDtos;
     public Task addTask(TaskDto taskDto){
         return taskRepository.save(taskMapper.revers(taskDto));
     }
